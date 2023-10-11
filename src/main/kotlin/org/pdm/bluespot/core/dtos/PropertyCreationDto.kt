@@ -13,15 +13,16 @@ data class PropertyCreationDto(
 ) {
     fun toProperty(): Property {
         return Property(
-            null,
-            null,
+            id = null,
+            landlordId = null,
             address,
             price,
             propertyType,
             restrictions,
             furnishings,
             hasGarage,
-            true
+            isAvailable = true,
+            isVerified = false
         )
     }
 }

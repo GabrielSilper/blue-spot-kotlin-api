@@ -15,6 +15,7 @@ class Property(
     var restrictions: MutableList<String> = ArrayList<String>(),
     var furnishings: MutableList<String> = ArrayList<String>(),
     var hasGarage: Boolean,
-    var isAvailable: Boolean
+    var isAvailable: Boolean,
+    var isVerified: Boolean
 ) {
 }

@@ -64,6 +64,13 @@ class LandlordService(
         return this.findById(landlordId).properties
     }
 
+    override fun listProperties(landlordId: String, available: Boolean): List<Property> {
+        if (available){
+            return this.findById(landlordId).properties.filter { property -> property.isAvailable }
+        }
+        return this.findById(landlordId).properties.filter { property -> !property.isAvailable }
+    }
+
     @Transactional
     override fun removeProperty(landlordId: String, propertyId: String) {
         val landlord = this.findById(landlordId)

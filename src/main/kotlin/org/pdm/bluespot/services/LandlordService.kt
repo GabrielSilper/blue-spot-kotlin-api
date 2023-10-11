@@ -28,29 +28,31 @@ class LandlordService(
     }
 
     override fun update(id: String, data: Landlord): Landlord {
-        val landlord = this.landlordRepository.findById(id)
+        val landlord = this.findById(id)
 
-        if (landlord.isEmpty) throw LandlordNotFoundException()
+        landlord.name = data.name
+        landlord.email = data.email
+        landlord.password = data.password
+        landlord.phone = data.phone
+        landlord.nationality = data.nationality
+        landlord.civilState = data.civilState
+        landlord.occupation = data.occupation
+        landlord.rg = data.rg
+        landlord.cpf = data.cpf
+        landlord.address = data.address
 
-        landlord.get().name = data.name
-        landlord.get().document = data.document
-        landlord.get().email = data.email
-        landlord.get().password = data.password
-
-        return this.landlordRepository.save(landlord.get())
+        return this.landlordRepository.save(landlord)
     }
 
     override fun delete(id: String) {
-        val landlord = this.landlordRepository.findById(id)
-
-        if (landlord.isEmpty) throw LandlordNotFoundException()
-
-        this.landlordRepository.delete(landlord.get())
+        val landlord = this.findById(id)
+        this.landlordRepository.delete(landlord)
     }
 
     @Transactional
     override fun addProperty(landlordId: String, property: Property): Property {
         val landlord = this.findById(landlordId)
+        property.landlordId = landlord.id
         val newProperty = this.propertyService.create(property)
 
         landlord.properties.add(newProperty)

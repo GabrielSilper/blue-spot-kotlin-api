@@ -1,8 +1,8 @@
-package org.pdm.bluespot.core.usercases
+package org.pdm.bluespot.core.usecases
 
 import org.pdm.bluespot.core.entities.Property
 
-interface LandlordUserCase {
+interface LandlordUseCase {
     fun addProperty(landlordId: String, property: Property): Property
     fun listProperties(landlordId: String): List<Property>
     fun removeProperty(landlordId: String, propertyId: String)

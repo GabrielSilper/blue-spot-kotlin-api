@@ -6,6 +6,7 @@ import org.pdm.bluespot.core.dtos.users.UserCreationDto
 import org.pdm.bluespot.core.entities.Property
 import org.pdm.bluespot.core.entities.users.Landlord
 import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -50,5 +51,11 @@ class LandlordController(private val landlordService: ILandlordService) {
             return this.landlordService.listProperties(id)
         }
         return this.landlordService.listProperties(id, available)
+    }
+
+    @DeleteMapping("/{id}/properties/{propertyId}")
+    fun deleteProperty(@PathVariable id: String, @PathVariable propertyId: String): String {
+        this.landlordService.removeProperty(id, propertyId)
+        return "Propriedade de id $propertyId retirada com sucesso!"
     }
 }

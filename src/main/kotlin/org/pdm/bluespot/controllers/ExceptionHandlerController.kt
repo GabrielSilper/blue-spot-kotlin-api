@@ -25,7 +25,8 @@ class ExceptionHandlerController {
 
     @ExceptionHandler
     fun generalExceptionHandler(e: Exception): ResponseEntity<ErrorMessage> {
-        val message = ErrorMessage(e.message)
+        val message =
+            ErrorMessage("Desculpe, ocorreu um erro interno no servidor. Por favor, tente novamente mais tarde.")
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(message)
     }
 }

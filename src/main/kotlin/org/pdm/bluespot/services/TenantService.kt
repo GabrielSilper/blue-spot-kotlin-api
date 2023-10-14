@@ -2,7 +2,7 @@ package org.pdm.bluespot.services
 
 import org.pdm.bluespot.applications.contracts.ITenantService
 import org.pdm.bluespot.core.entities.users.Tenant
-import org.pdm.bluespot.core.exceptions.TenantNotFound
+import org.pdm.bluespot.core.exceptions.TenantNotFoundException
 import org.pdm.bluespot.core.repositories.users.TenantRepository
 import org.springframework.stereotype.Service
 
@@ -13,7 +13,7 @@ class TenantService(private val tenantRepository: TenantRepository) : ITenantSer
     }
 
     override fun findById(id: String): Tenant {
-        return this.tenantRepository.findById(id).orElseThrow{ TenantNotFound() }
+        return this.tenantRepository.findById(id).orElseThrow{ TenantNotFoundException() }
     }
 
     override fun findAll(): List<Tenant> {

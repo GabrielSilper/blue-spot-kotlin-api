@@ -20,6 +20,17 @@ class PropertyService(private val propertyRepository: PropertyRepository) : IPro
         return this.propertyRepository.findAll()
     }
 
+    override fun update(id: String, data: Property): Property {
+        val property = this.findById(id)
+        property.address = data.address
+        property.price =  data.price
+        property.hasGarage =  data.hasGarage
+        property.isAvailable = data.isAvailable
+        property.isVerified = data.isVerified
+
+        return this.propertyRepository.save(property)
+    }
+
     override fun delete(id: String) {
         val property = this.findById(id)
         this.propertyRepository.delete(property)

@@ -7,7 +7,9 @@ import org.pdm.bluespot.core.entities.users.Landlord
 
 import org.pdm.bluespot.core.exceptions.LandlordNotFoundException
 import org.pdm.bluespot.core.repositories.users.LandlordRepository
+import org.springframework.stereotype.Service
 
+@Service
 class LandlordService(
     private val landlordRepository: LandlordRepository,
     private val propertyService: IPropertyService

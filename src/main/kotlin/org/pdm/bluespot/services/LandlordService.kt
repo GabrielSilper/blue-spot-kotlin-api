@@ -24,6 +24,7 @@ class LandlordService(
 
     override fun registerProperty(landlordId: String, property: Property): Property {
         val landlord = this.getLandlordById(landlordId)
+        property.landlordId = landlordId
         val newProperty = this.propertyService.createProperty(property)
 
         landlord.properties.add(newProperty)

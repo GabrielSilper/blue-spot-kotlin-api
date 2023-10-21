@@ -25,6 +25,7 @@ class LandlordController(private val landlordService: ILandlordService) {
     }
 
     @PostMapping("/{landlordId}/properties")
+    @ResponseStatus(HttpStatus.CREATED)
     fun registerProperty(
         @PathVariable landlordId: String,
         @RequestBody data: PropertyCreationDto

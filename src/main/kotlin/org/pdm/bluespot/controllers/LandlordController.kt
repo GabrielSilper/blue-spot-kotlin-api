@@ -6,6 +6,7 @@ import org.pdm.bluespot.core.dtos.UserCreationDto
 import org.pdm.bluespot.core.entities.Property
 import org.pdm.bluespot.core.entities.users.Landlord
 import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -29,5 +30,10 @@ class LandlordController(private val landlordService: ILandlordService) {
         @RequestBody data: PropertyCreationDto
     ): Property {
         return landlordService.registerProperty(landlordId, data.toProperty())
+    }
+
+    @GetMapping("/{landlordId}/properties")
+    fun getLandlordProperties(@PathVariable landlordId: String): List<Property> {
+        return landlordService.getLandlordProperties(landlordId)
     }
 }

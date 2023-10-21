@@ -29,4 +29,8 @@ class LandlordService(
 
         return newProperty
     }
+
+    override fun getLandlordProperties(landlordId: String): List<Property> {
+        return this.getLandlordById(landlordId).properties
+    }
 }

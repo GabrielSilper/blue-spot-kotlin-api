@@ -5,6 +5,7 @@ import org.pdm.bluespot.core.enums.PropertyType
 
 data class PropertyCreationDto(
     var address: String,
+    var description: String,
     var price: Double,
     var propertyType: PropertyType,
     var restrictions: MutableList<String> = ArrayList<String>(),
@@ -15,6 +16,8 @@ data class PropertyCreationDto(
         return Property(
             id = null,
             landlordId = null,
+            images = listOf(),
+            description,
             address,
             price,
             propertyType,

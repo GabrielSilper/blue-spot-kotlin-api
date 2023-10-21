@@ -7,7 +7,7 @@ import java.time.LocalDate
 
 @Document
 class Contract(
-    @Id var id: String,
+    @Id var id: String?,
     var tenantId: String,
     var property: Property,
     var startDate: LocalDate,

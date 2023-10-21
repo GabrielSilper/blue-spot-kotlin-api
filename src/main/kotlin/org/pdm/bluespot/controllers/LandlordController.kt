@@ -2,7 +2,7 @@ package org.pdm.bluespot.controllers
 
 import org.pdm.bluespot.applications.contracts.ILandlordService
 import org.pdm.bluespot.core.dtos.PropertyCreationDto
-import org.pdm.bluespot.core.dtos.users.UserCreationDto
+import org.pdm.bluespot.core.dtos.UserCreationDto
 import org.pdm.bluespot.core.entities.Property
 import org.pdm.bluespot.core.entities.users.Landlord
 import org.springframework.http.HttpStatus
@@ -15,33 +15,26 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("landlords")
+@RequestMapping("/landlords")
 class LandlordController(private val landlordService: ILandlordService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun createLandlord(@RequestBody data: UserCreationDto): Landlord {
-        return this.landlordService.create(data.toLandlord())
+        return landlordService.createLandlord(data.toLandlord())
     }
 
-    @PostMapping("/{id}/properties")
+    @PostMapping("/{landlordId}/properties")
     @ResponseStatus(HttpStatus.CREATED)
-    fun addProperty(@PathVariable id: String, @RequestBody data: PropertyCreationDto): Property {
-        return this.landlordService.addProperty(id, data.toProperty())
+    fun registerProperty(
+        @PathVariable landlordId: String,
+        @RequestBody data: PropertyCreationDto
+    ): Property {
+        return landlordService.registerProperty(landlordId, data.toProperty())
     }
 
-    @GetMapping
-    fun findAllLandlord(): List<Landlord> {
-        return this.landlordService.findAll()
-    }
-
-    @GetMapping("/{id}")
-    fun findLandlord(@PathVariable id: String): Landlord {
-        return this.landlordService.findById(id)
-    }
-
-    @GetMapping("/{id}/properties")
-    fun findPropertiesByLandlord(@PathVariable id: String): List<Property> {
-        return this.landlordService.listProperties(id)
+    @GetMapping("/{landlordId}/properties")
+    fun getLandlordProperties(@PathVariable landlordId: String): List<Property> {
+        return landlordService.getLandlordProperties(landlordId)
     }
 }

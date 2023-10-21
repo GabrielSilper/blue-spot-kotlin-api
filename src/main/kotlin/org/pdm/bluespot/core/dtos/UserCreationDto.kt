@@ -1,4 +1,4 @@
-package org.pdm.bluespot.core.dtos.users
+package org.pdm.bluespot.core.dtos
 
 import org.pdm.bluespot.core.enums.CivilState
 import org.pdm.bluespot.core.entities.users.Landlord

@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document
 class Property(
     @Id var id: String?,
     var landlordId: String?,
+    var images: List<String>,
+    var description: String,
     var address: String,
     var price: Double,
     var propertyType: PropertyType,

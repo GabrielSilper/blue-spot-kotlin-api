@@ -4,4 +4,5 @@ import org.pdm.bluespot.core.entities.users.Landlord
 
 interface ILandlordService {
     fun createLandlord(data: Landlord): Landlord
+    fun getLandlordById(id: String): Landlord
 }

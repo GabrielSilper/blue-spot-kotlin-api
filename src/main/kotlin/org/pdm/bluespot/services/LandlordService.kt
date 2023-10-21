@@ -4,10 +4,15 @@ import org.pdm.bluespot.applications.contracts.ILandlordService
 import org.pdm.bluespot.core.entities.users.Landlord
 
 import org.pdm.bluespot.core.entities.users.Tenant
+import org.pdm.bluespot.core.exceptions.LandlordNotFoundException
 import org.pdm.bluespot.core.repositories.users.LandlordRepository
 
-class LandlordService(private val landlordRepository: LandlordRepository): ILandlordService{
+class LandlordService(private val landlordRepository: LandlordRepository) : ILandlordService {
     override fun createLandlord(data: Landlord): Landlord {
         return this.landlordRepository.save(data)
+    }
+
+    override fun getLandlordById(id: String): Landlord {
+        return this.landlordRepository.findById(id).orElseThrow { LandlordNotFoundException() }
     }
 }

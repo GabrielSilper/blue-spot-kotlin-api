@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.pdm.bluespot.applications.contracts.ILandlordService
 import org.pdm.bluespot.applications.contracts.IPropertyService
-import org.pdm.bluespot.core.entities.users.Landlord
 import org.pdm.bluespot.core.repositories.PropertyRepository
 import org.pdm.bluespot.core.repositories.users.LandlordRepository
 import org.pdm.bluespot.mocks.*
@@ -55,9 +54,9 @@ class LandlordServiceTests(
     @Test
     fun `should register a new property for a landlord`() {
         //given
-        every { propertyService.createProperty(mockProperty) } returns mockResultProperty
+        every { propertyService.createProperty(mockProperty) } returns mockResultAddProperty
         every { landlordService.getLandlordById("653352ad7d213c17a1d0fc5e") } returns mockResultLandlord
-        mockResultLandlord.properties.add(mockResultProperty)
+        mockResultLandlord.properties.add(mockResultAddProperty)
         every { landlordRepository.save(any()) } returns mockResultLandlord
 
         //when
@@ -67,7 +66,7 @@ class LandlordServiceTests(
         verify(exactly = 1) { propertyService.createProperty(mockProperty) }
         verify(exactly = 1) { landlordRepository.findById("653352ad7d213c17a1d0fc5e") }
         verify(exactly = 1) { landlordRepository.save(any()) }
-        assertEquals(mockResultProperty, property)
+        assertEquals(mockResultAddProperty, property)
     }
 
     @Test

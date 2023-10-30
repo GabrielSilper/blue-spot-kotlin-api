@@ -44,5 +44,5 @@ val mockLandlordWithProperties = Landlord(
     "123456789",
     "123456789",
     "Address",
-    mutableListOf(mockResultProperty, mockResultProperty)
+    mutableListOf(mockResultAddProperty, mockResultAddProperty)
 )

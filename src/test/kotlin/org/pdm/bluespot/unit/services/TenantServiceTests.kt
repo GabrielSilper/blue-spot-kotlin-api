@@ -2,6 +2,7 @@ package org.pdm.bluespot.unit.services
 
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.pdm.bluespot.applications.contracts.ITenantService
@@ -23,6 +24,7 @@ class TenantServiceTests {
         //when
         val tenant = tenantService.createTenant(mockTenant)
         //then
+        verify(exactly = 1) { tenantRepository.save(mockTenant) }
         assertEquals(mockResultTenant, tenant)
     }
 }

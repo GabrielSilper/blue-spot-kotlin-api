@@ -1,7 +1,21 @@
 package org.pdm.bluespot.mocks
 
+import org.pdm.bluespot.core.dtos.UserCreationDto
 import org.pdm.bluespot.core.entities.users.Landlord
 import org.pdm.bluespot.core.enums.CivilState
+
+val mockLandlordCreationDto = UserCreationDto(
+    "John",
+    "john@test.com",
+    "123456789",
+    "92 99999 9999",
+    "Brasileiro",
+    CivilState.SOLTEIRO,
+    "Occupation",
+    "123456789",
+    "123456789",
+    "Address",
+)
 
 val mockLandlord = Landlord(
     null,

@@ -2,6 +2,7 @@ package org.pdm.bluespot.unit.services
 
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.pdm.bluespot.applications.contracts.IPropertyService
@@ -25,6 +26,7 @@ class PropertyServiceTests {
         val property = propertyService.createProperty(mockProperty)
 
         //then
+        verify(exactly = 1) { propertyRepository.save(mockProperty) }
         assertEquals(mockResultProperty, property)
     }
 }

@@ -10,4 +10,8 @@ class TenantService(private val tenantRepository: TenantRepository): ITenantServ
     override fun createTenant(data: Tenant): Tenant {
         return this.tenantRepository.save(data)
     }
+
+    override fun getAllTenants(): List<Tenant> {
+        return this.tenantRepository.findAll()
+    }
 }

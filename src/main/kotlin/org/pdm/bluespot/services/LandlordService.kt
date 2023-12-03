@@ -6,6 +6,7 @@ import org.pdm.bluespot.core.entities.Property
 import org.pdm.bluespot.core.entities.users.Landlord
 
 import org.pdm.bluespot.core.exceptions.LandlordNotFoundException
+import org.pdm.bluespot.core.exceptions.LandlordUnauthorizedException
 import org.pdm.bluespot.core.repositories.users.LandlordRepository
 import org.springframework.stereotype.Service
 
@@ -35,5 +36,9 @@ class LandlordService(
 
     override fun getLandlordProperties(landlordId: String): List<Property> {
         return this.getLandlordById(landlordId).properties
+    }
+
+    override fun loginLandlord(email: String, password: String): Landlord {
+        return this.landlordRepository.findByEmailAndPassword(email, password).orElseThrow { LandlordUnauthorizedException() }
     }
 }

@@ -2,6 +2,7 @@ package org.pdm.bluespot.controllers
 
 import org.pdm.bluespot.core.dtos.ErrorMessage
 import org.pdm.bluespot.core.exceptions.LandlordNotFoundException
+import org.pdm.bluespot.core.exceptions.LandlordUnauthorizedException
 import org.pdm.bluespot.core.exceptions.PropertyNotFoundException
 import org.pdm.bluespot.core.exceptions.TenantNotFoundException
 import org.springframework.http.HttpStatus
@@ -28,6 +29,12 @@ class ExceptionHandlerController {
     fun notFoundExceptionHandler(e: TenantNotFoundException): ResponseEntity<ErrorMessage> {
         val message = ErrorMessage(HttpStatus.NOT_FOUND.value(), e.message)
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message)
+    }
+
+    @ExceptionHandler
+    fun unauthorizedExceptionHandler(e: LandlordUnauthorizedException): ResponseEntity<ErrorMessage> {
+        val message = ErrorMessage(HttpStatus.UNAUTHORIZED.value(), e.message)
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(message)
     }
 
     @ExceptionHandler

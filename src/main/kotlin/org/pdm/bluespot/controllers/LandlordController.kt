@@ -3,6 +3,7 @@ package org.pdm.bluespot.controllers
 import org.pdm.bluespot.applications.contracts.ILandlordService
 import org.pdm.bluespot.core.dtos.PropertyCreationDto
 import org.pdm.bluespot.core.dtos.UserCreationDto
+import org.pdm.bluespot.core.dtos.LoginDto
 import org.pdm.bluespot.core.entities.Property
 import org.pdm.bluespot.core.entities.users.Landlord
 import org.springframework.http.HttpStatus
@@ -31,6 +32,11 @@ class LandlordController(private val landlordService: ILandlordService) {
         @RequestBody data: PropertyCreationDto
     ): Property {
         return landlordService.registerProperty(landlordId, data.toProperty())
+    }
+
+    @PostMapping("/login")
+    fun loginLandlord(@RequestBody data: LoginDto): Landlord {
+        return landlordService.loginLandlord(data.email, data.password)
     }
 
     @GetMapping("/{landlordId}/properties")

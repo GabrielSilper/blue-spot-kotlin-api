@@ -8,4 +8,5 @@ interface ILandlordService {
     fun getLandlordById(id: String): Landlord
     fun registerProperty(landlordId: String, property: Property): Property
     fun getLandlordProperties(landlordId: String): List<Property>
+    fun loginLandlord(email: String, password: String): Landlord
 }
